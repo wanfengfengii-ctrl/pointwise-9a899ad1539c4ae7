@@ -88,6 +88,28 @@ class TestReturns(LabCase):
             submit(self.db, table.table_id, [edit('B', 19, 'direct')])
         self.assertEqual(self.account(), before)
 
+    def test_fallback_source_recorrection_stales_old_edit(self):
+        table = export(self.db, BATCH_ID)
+        correct(self.db, BATCH_ID, 'S', 0, 17)
+        self.reopen()
+        before = self.account()
+        with self.assertRaises(StaleEdit):
+            submit(self.db, table.table_id, [edit('A', 19)])
+        self.assertEqual(self.account(), before)
+        self.assertEqual((self.field('P').value, self.field('P').revision), (None, 0))
+        self.assertEqual(read_table(self.db, table.table_id), table)
+
+    def test_fallback_source_round_trip_stales_old_edit(self):
+        table = export(self.db, BATCH_ID)
+        correct(self.db, BATCH_ID, 'S', 0, 19)
+        correct(self.db, BATCH_ID, 'S', 1, 17)
+        self.reopen()
+        before = self.account()
+        with self.assertRaises(StaleEdit):
+            submit(self.db, table.table_id, [edit('A', 19), edit('B', 19, 'direct')])
+        self.assertEqual(self.account(), before)
+        self.assertEqual(read_table(self.db, table.table_id), table)
+
     def test_unrelated_update(self):
         table = export(self.db, BATCH_ID)
         correct(self.db, BATCH_ID, 'CS', 0, 27)
