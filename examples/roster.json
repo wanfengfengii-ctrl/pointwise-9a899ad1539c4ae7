@@ -1,0 +1,8 @@
+{
+  "rows": [
+    {"row": "C", "cells": [{"cell": "effective", "kind": "effective", "primary": "CP", "backup": "CS"}]},
+    {"row": "A", "cells": [{"cell": "effective", "kind": "effective", "primary": "P", "backup": "S"}]},
+    {"row": "D", "cells": [{"cell": "effective", "kind": "effective", "primary": "DP", "backup": "DS"}]},
+    {"row": "B", "cells": [{"cell": "direct", "kind": "direct", "field": "S"}]}
+  ]
+}

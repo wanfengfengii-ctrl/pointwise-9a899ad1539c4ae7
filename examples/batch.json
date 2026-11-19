@@ -1,0 +1,11 @@
+{
+  "batch_id": "CW-27",
+  "readings": [
+    {"field": "S", "device": "station-4-backup", "value_um": 17},
+    {"field": "P", "device": "station-4-primary", "value_um": null},
+    {"field": "CS", "device": "station-2-backup", "value_um": 26},
+    {"field": "CP", "device": "station-2-primary", "value_um": 0},
+    {"field": "DS", "device": "station-8-backup", "value_um": null},
+    {"field": "DP", "device": "station-8-primary", "value_um": null}
+  ]
+}
